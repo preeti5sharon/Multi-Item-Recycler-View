@@ -6,11 +6,15 @@ import com.example.recyclerview.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private var _binding: ActivityMainBinding? = null
+    private val rvAdapter = RVAdapter()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         _binding = ActivityMainBinding.inflate(layoutInflater)
 
         setContentView(_binding?.root)
+
+        _binding?.recyclerView?.adapter = rvAdapter
+
     }
 }
