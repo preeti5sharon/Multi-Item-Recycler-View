@@ -4,28 +4,42 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.recyclerview.databinding.RvItem2Binding
+import com.example.recyclerview.databinding.RvItemBinding
 
-class RVAdapter(itemNo: Int) :
+class RVAdapter(private val itemNo: Array<ItemClass>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val itemNo = itemNo
+    companion object {
+        const val VIEW_TYPE_ONE = 1
+        const val VIEW_TYPE_TWO = 2
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        if (viewType == 1) {
-            return ItemViewHolder1(
+        return if (viewType == VIEW_TYPE_ONE) {
+            ItemViewHolder1(
                 LayoutInflater.from(parent.context).inflate(R.layout.rv_item, parent, false),
             )
+        } else {
+            ItemViewHolder2(
+                LayoutInflater.from(parent.context).inflate(R.layout.rv_item2, parent, false),
+            )
         }
-        return ItemViewHolder2(
-            LayoutInflater.from(parent.context).inflate(R.layout.rv_item2, parent, false),
-        )
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if (itemNo == 1) {
-            (holder as ItemViewHolder1)
+        val binding = RvItemBinding.bind(holder.itemView)
+        val binding2 = RvItem2Binding.bind(holder.itemView)
+
+        if (itemNo[position].viewType == VIEW_TYPE_ONE) {
+            binding.textView1.text = itemNo[position].data.toString()
         } else {
-            (holder as ItemViewHolder2)
+            binding2.textView2.text = itemNo[position].data.toString()
         }
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return itemNo[position].viewType
     }
 
     inner class ItemViewHolder2(view: View) : RecyclerView.ViewHolder(view)
