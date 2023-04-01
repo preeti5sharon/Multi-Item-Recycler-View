@@ -28,11 +28,9 @@ class RVAdapter(private val itemNo: ArrayList<ItemClass>) :
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-
         if (itemNo[position].viewType == VIEW_TYPE_ONE) {
             val binding = RvItemBinding.bind(holder.itemView)
-
-            binding.textView1.text = itemNo[position].data
+            // TODO
         } else {
             val binding2 = RvItem2Binding.bind(holder.itemView)
 
