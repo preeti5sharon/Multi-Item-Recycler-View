@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
 
         val list = ArrayList<ItemClass>()
         for (i in 0..9) {
-            if (i % 2 == 0) {
+            if (i == 0) {
                 list.add(ItemClass(1, "Even"))
             } else {
                 list.add(ItemClass(2, "Odd"))
