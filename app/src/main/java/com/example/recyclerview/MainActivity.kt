@@ -22,7 +22,8 @@ class MainActivity : AppCompatActivity() {
                 list.add(ItemClass(2, "Odd"))
             }
         }
-        _binding?.recyclerView?.layoutManager = LinearLayoutManager(this)
+        _binding?.recyclerView?.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         _binding?.recyclerView?.adapter = RVAdapter(list)
     }
 }

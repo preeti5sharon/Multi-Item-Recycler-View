@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recyclerview.databinding.RvItem2Binding
 import com.example.recyclerview.databinding.RvItemBinding
+import com.example.recyclerview.databinding.RvItemChildBinding
 
 class RVAdapter(private val itemNo: ArrayList<ItemClass>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -29,8 +30,8 @@ class RVAdapter(private val itemNo: ArrayList<ItemClass>) :
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (itemNo[position].viewType == VIEW_TYPE_ONE) {
-            val binding = RvItemBinding.bind(holder.itemView)
-            // TODO
+            val binding = RvItemChildBinding.bind(holder.itemView)
+            binding.text3.text = itemNo[position].data
         } else {
             val binding2 = RvItem2Binding.bind(holder.itemView)
 
