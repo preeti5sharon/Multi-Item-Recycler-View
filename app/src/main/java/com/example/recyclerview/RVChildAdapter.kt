@@ -13,7 +13,6 @@ class RVChildAdapter(val childItemList: List<String>) : RecyclerView.Adapter<Rec
         return ChildViewHolder(view)
     }
 
-
     override fun getItemCount(): Int {
         return childItemList.size
     }
