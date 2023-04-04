@@ -8,7 +8,7 @@ import com.example.recyclerview.databinding.RvItem2Binding
 import com.example.recyclerview.databinding.RvItemBinding
 import com.example.recyclerview.databinding.RvItemChildBinding
 
-class RVAdapter(private val itemNo: ArrayList<ItemClass>) :
+class RVAdapter(private val itemNo: List<ItemClass>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
@@ -19,23 +19,23 @@ class RVAdapter(private val itemNo: ArrayList<ItemClass>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return if (viewType == VIEW_TYPE_ONE) {
             ItemViewHolder1(
-                LayoutInflater.from(parent.context).inflate(R.layout.rv_item, parent, false),
+                LayoutInflater.from(parent.context).inflate(R.layout.rv_item2, parent, false),
             )
         } else {
-            ItemViewHolder2(
-                LayoutInflater.from(parent.context).inflate(R.layout.rv_item2, parent, false),
+            return ItemViewHolder2(
+                LayoutInflater.from(parent.context).inflate(R.layout.rv_item, parent, false),
             )
         }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if (itemNo[position].viewType == VIEW_TYPE_ONE) {
-            val binding = RvItemChildBinding.bind(holder.itemView)
-            binding.text3.text = itemNo[position].data
-        } else {
-            val binding2 = RvItem2Binding.bind(holder.itemView)
+        if (itemNo[position] is ItemClass.ItemList) {
+            val binding = RvItemBinding.bind(holder.itemView)
+            binding.recyclerView3.adapter = RVChildAdapter((itemNo[position] as ItemClass.ItemList).data)
+        } else if(itemNo[position] is ItemClass.ItemString) {
+            val binding = RvItem2Binding.bind(holder.itemView)
 
-            binding2.textView2.text = itemNo[position].data
+            binding.textViewVertical.text = (itemNo[position] as ItemClass.ItemString).data
         }
     }
 
@@ -48,6 +48,6 @@ class RVAdapter(private val itemNo: ArrayList<ItemClass>) :
     inner class ItemViewHolder1(view: View) : RecyclerView.ViewHolder(view)
 
     override fun getItemCount(): Int {
-        return 10
+        return itemNo.size
     }
 }

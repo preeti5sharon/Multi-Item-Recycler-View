@@ -2,7 +2,6 @@ package com.example.recyclerview
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.recyclerview.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -15,15 +14,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(_binding?.root)
 
         val list = ArrayList<ItemClass>()
-        for (i in 0..9) {
-            if (i == 0) {
-                list.add(ItemClass(1, "Even"))
-            } else {
-                list.add(ItemClass(2, "Odd"))
-            }
+        val childList = ArrayList<String>()
+        for (i in 0..50) {
+            list.add(ItemClass.ItemString("Preeti $i"))
         }
-        _binding?.recyclerView?.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        for (i in 100..120) {
+            childList.add("Sachin $i")
+        }
+        list.add(0, ItemClass.ItemList(childList))
         _binding?.recyclerView?.adapter = RVAdapter(list)
     }
 }
