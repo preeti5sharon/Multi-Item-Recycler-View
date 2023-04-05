@@ -16,10 +16,10 @@ class MainActivity : AppCompatActivity() {
         val list = ArrayList<ItemClass>()
         val childList = ArrayList<String>()
         for (i in 0..50) {
-            list.add(ItemClass.ItemString("Preeti $i"))
+            list.add(ItemClass.ItemString("$i"))
         }
         for (i in 100..120) {
-            childList.add("Sachin $i")
+            childList.add("Horizontal $i")
         }
         list.add(0, ItemClass.ItemList(childList))
         _binding?.recyclerView?.adapter = RVAdapter(list)

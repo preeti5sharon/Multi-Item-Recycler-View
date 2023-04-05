@@ -22,7 +22,7 @@ class RVAdapter(private val itemNo: List<ItemClass>) :
             )
         } else {
             return ItemViewHolder2(
-                LayoutInflater.from(parent.context).inflate(R.layout.rv_item, parent, false),
+                LayoutInflater.from(parent.context).inflate(R.layout.rv_item2, parent, false),
             )
         }
     }
